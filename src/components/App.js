@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../QDelft_logo.svg';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../styles/App.css';
+import Todos from './todos/Todos';
 
 class App extends Component {
   render() {
@@ -13,7 +14,7 @@ class App extends Component {
         </header>
         <div className="row">
           <div className="col-xs-12">
-            <p className="App-intro">Your ToDo application will go here</p>
+            <Todos />
           </div>
         </div>
       </div>
