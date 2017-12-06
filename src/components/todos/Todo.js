@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const Todo = ({ heading, detail }) => (
   <li>
@@ -10,7 +10,7 @@ const Todo = ({ heading, detail }) => (
 
 Todo.propTypes = {
   heading: PropTypes.string.isRequired,
-  detail: PropTypes.string.isRequired,
+  detail: PropTypes.string.isRequired
 };
 
 export default Todo;
