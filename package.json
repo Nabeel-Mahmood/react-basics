@@ -15,6 +15,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "format": "prettier --write --print-width=120 --single-quote --tab-width=2 --trailing-comma=es5 --jsx-bracket-same-line src/**/*.js"
+    "format": "prettier --write --print-width=120 --single-quote --tab-width=2 --trailing-comma=none --jsx-bracket-same-line src/**/*.js"
   }
 }

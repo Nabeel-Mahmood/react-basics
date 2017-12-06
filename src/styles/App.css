@@ -1,12 +1,9 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 80px;
 }
 
 .App-header {
+  text-align: center;
   background-color: white;
   height: 150px;
   padding: 20px;
@@ -36,4 +33,8 @@ li span.todo-header {
 li span.todo-detail {
   font-style: italic;
   margin-left: 5px;
+}
+
+button, label {
+  margin-top: 10px;
 }
