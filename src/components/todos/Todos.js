@@ -1,37 +1,58 @@
 import React, { Component } from 'react';
-import { addTodo, todos } from '../../data/todoData';
+import { addTodo, getTodos } from '../../data/todoDataAsync';
 import EditTodo from './EditTodo';
 import Todo from './Todo';
 
 class Todos extends Component {
   state = {
+    dataLoaded: false,
+    isSaving: false,
     todos: []
   };
 
   componentDidMount() {
-    this.setState({
-      todos
+    getTodos().then(todos => {
+      this.setState({
+        todos,
+        dataLoaded: true
+      });
     });
   }
 
   onAddTodoHandler = todo => {
-    addTodo(todo);
-    this.setState({
-      todos
-    });
+    this.setState(
+      {
+        isSaving: true
+      },
+      () => {
+        addTodo(todo).then(todos => {
+          this.setState({
+            todos,
+            isSaving: false
+          });
+        });
+      }
+    );
   };
 
   render() {
+    const { dataLoaded, isSaving } = this.state;
     return (
       <div className="row">
         <div className="col-xs-offset-2 col-xs-8">
           <section>
             <h2>Todos</h2>
-            <ul>{this.state.todos.map(todo => <Todo key={todo.id} heading={todo.heading} detail={todo.detail} />)}</ul>
+            {dataLoaded ? (
+              <ul>
+                {this.state.todos.map(todo => <Todo key={todo.id} heading={todo.heading} detail={todo.detail} />)}
+              </ul>
+            ) : (
+              <p className="loading">Todos loading...</p>
+            )}
           </section>
         </div>
         <div className="col-xs-offset-2 col-xs-8">
-          <EditTodo onAddTodo={this.onAddTodoHandler} />
+          <EditTodo onAddTodo={this.onAddTodoHandler} isSaving={isSaving} />
         </div>
       </div>
     );

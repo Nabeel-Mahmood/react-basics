@@ -38,3 +38,30 @@ li span.todo-detail {
 button, label {
   margin-top: 10px;
 }
+
+p.loading {
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+button.spinner {
+  padding-right: 30px;
+}
+
+
+.spinner:after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #333;
+  animation: spinner .6s linear infinite;
+}
