@@ -52,3 +52,29 @@ Remember to clear your data after the add.
 with toggling CSS classes in your React code). Set the `<input>` fields as
 readonly while the data is saving. You may need to use the callback functionality of `setState` to properly time the setting and unsetting 
 your saving flag on the state.  
+
+### 4. Add routing to your application.
+
+Because we are making web applications we want to be able to navigate to views instead of doing everything on one page.
+
+You will now refactor your application so that you can navigate to an Add Todo screen where you can add your new Todo and
+then you can navigate again to a screen showing the list of Todos.
+
+**Using Routes**
+
+Use React Router v4 so that `localhost:xxxx/todos` displays your list of Todos and `localhost:xxxx/todos/new` displays your
+Add Todo screen. 
+
+**Using Navlink**
+
+Add a link on the Todos screen so that you can navigate to the Add Todo Screen.
+
+On the Add Todo screen, add a link to navigate back if you want to cancel.
+
+**Using history**
+
+Automatically navigate back to the Todos screen once the Todo has been successfully added.
+
+**Bonus**: Update the document title of your application when you visit each screen so it reflects the current application state. Also
+add some focus management to your application to focus the first input on the Add Todo screen when it loads and to focus the 
+header on the Todos screen when it loads.
