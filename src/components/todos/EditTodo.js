@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 class EditTodo extends Component {
   static propTypes = {
@@ -13,6 +14,10 @@ class EditTodo extends Component {
     detail: '',
     dueDate: ''
   };
+
+  componentDidMount() {
+    this.focusInput.focus();
+  }
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.isSaving && this.props.isSaving) {
@@ -52,6 +57,9 @@ class EditTodo extends Component {
           <input
             name="heading"
             id="heading"
+            ref={input => {
+              this.focusInput = input;
+            }}
             className="form-control"
             onChange={this.onChangeHandler}
             value={heading}
@@ -78,6 +86,7 @@ class EditTodo extends Component {
           <button aria-busy={isSaving} type="submit" className={buttonClasses}>
             Add Todo
           </button>
+          <NavLink to="/todos">Cancel action</NavLink>
         </form>
       </section>
     );

@@ -37,6 +37,7 @@ li span.todo-detail {
 
 button, label {
   margin-top: 10px;
+  margin-right: 10px;
 }
 
 p.loading {
@@ -64,4 +65,10 @@ button.spinner {
   border: 2px solid #ccc;
   border-top-color: #333;
   animation: spinner .6s linear infinite;
+}
+
+a {
+  padding-top: 10px;
+  font-size: 1.5em;
+  position: absolute;
 }

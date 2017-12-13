@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { addTodo, getTodos } from '../../data/todoDataAsync';
-import EditTodo from './EditTodo';
+import { NavLink } from 'react-router-dom';
+import { getTodos } from '../../data/todoDataAsync';
 import Todo from './Todo';
 
 class Todos extends Component {
@@ -17,31 +17,23 @@ class Todos extends Component {
         dataLoaded: true
       });
     });
+    document.title = 'ODelft Basic Todo App | Todos';
+    this.heading.focus();
   }
 
-  onAddTodoHandler = todo => {
-    this.setState(
-      {
-        isSaving: true
-      },
-      () => {
-        addTodo(todo).then(todos => {
-          this.setState({
-            todos,
-            isSaving: false
-          });
-        });
-      }
-    );
-  };
-
   render() {
-    const { dataLoaded, isSaving } = this.state;
+    const { dataLoaded } = this.state;
     return (
       <div className="row">
         <div className="col-xs-offset-2 col-xs-8">
           <section>
-            <h2>Todos</h2>
+            <h2
+              tabIndex="-1"
+              ref={heading => {
+                this.heading = heading;
+              }}>
+              Todos
+            </h2>
             {dataLoaded ? (
               <ul>
                 {this.state.todos.map(todo => <Todo key={todo.id} heading={todo.heading} detail={todo.detail} />)}
@@ -49,10 +41,8 @@ class Todos extends Component {
             ) : (
               <p className="loading">Todos loading...</p>
             )}
+            <NavLink to="/todos/new">Add new Todo</NavLink>
           </section>
-        </div>
-        <div className="col-xs-offset-2 col-xs-8">
-          <EditTodo onAddTodo={this.onAddTodoHandler} isSaving={isSaving} />
         </div>
       </div>
     );
