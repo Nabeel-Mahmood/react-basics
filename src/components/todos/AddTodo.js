@@ -25,7 +25,7 @@ class Todos extends Component {
               isSaving: false
             },
             () => {
-              history.push('/push');
+              history.push('/todos');
             }
           );
         });
