@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const Todo = ({ heading, detail }) => (
+const Todo = ({ id, heading, detail }) => (
   <li>
-    <span className="todo-header">{heading}</span>-
+    <NavLink className="non-absolute" to={`/todos/${id}`}>
+      {heading}
+    </NavLink>-
     <span className="todo-detail">{detail}</span>
   </li>
 );

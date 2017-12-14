@@ -18,10 +18,9 @@ class Todos extends Component {
         isSaving: true
       },
       () => {
-        addTodo(todo).then(todos => {
+        addTodo(todo).then(() => {
           this.setState(
             {
-              todos,
               isSaving: false
             },
             () => {
@@ -38,7 +37,7 @@ class Todos extends Component {
     return (
       <div className="row">
         <div className="col-xs-offset-2 col-xs-8">
-          <EditTodo onAddTodo={this.onAddTodoHandler} isSaving={isSaving} />
+          <EditTodo onSaveTodo={this.onAddTodoHandler} isSaving={isSaving} />
         </div>
       </div>
     );

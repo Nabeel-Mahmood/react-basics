@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import logo from '../QDelft_logo.svg';
 import '../styles/App.css';
-import Todos from './todos/Todos';
 import AddTodo from './todos/AddTodo';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import Todos from './todos/Todos';
+import UpdateTodo from './todos/UpdateTodo';
 
 class App extends Component {
   render() {
@@ -20,7 +21,8 @@ class App extends Component {
               <div className="col-xs-12">
                 <Switch>
                   <Route exact path="/todos" component={Todos} />
-                  <Route path="/todos/new" component={AddTodo} />
+                  <Route exact path="/todos/new" component={AddTodo} />
+                  <Route path="/todos/:id" component={UpdateTodo} />
                   <Redirect from="/" to="/todos" />
                 </Switch>
               </div>

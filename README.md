@@ -78,3 +78,17 @@ Automatically navigate back to the Todos screen once the Todo has been successfu
 **Bonus**: Update the document title of your application when you visit each screen so it reflects the current application state. Also
 add some focus management to your application to focus the first input on the Add Todo screen when it loads and to focus the 
 header on the Todos screen when it loads.
+
+### 5. Edit an existing todo.
+
+It is also handy to go and edit the todos currently on the page.
+
+Reuse the EditTodo component to not only add Todos but to also edit existing todos on a new url `localhost:xxxx/todos/{id}`.
+
+Use links in the list to navigate to the edit page for each todo.
+
+Fetch the individual todos with the id from the url by using the `getTodo` call and update a Todo with the `updateTodo` call.
+
+Make sure that the saving spinner still works.
+
+You may have to refactor the EditTodo component.

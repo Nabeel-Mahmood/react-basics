@@ -36,7 +36,9 @@ class Todos extends Component {
             </h2>
             {dataLoaded ? (
               <ul>
-                {this.state.todos.map(todo => <Todo key={todo.id} heading={todo.heading} detail={todo.detail} />)}
+                {this.state.todos.map(todo => (
+                  <Todo key={todo.id} id={todo.id} heading={todo.heading} detail={todo.detail} />
+                ))}
               </ul>
             ) : (
               <p className="loading">Todos loading...</p>

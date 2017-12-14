@@ -1,4 +1,4 @@
-export const todos = [
+export let todos = [
   {
     id: 1,
     heading: 'Buy eggs',
@@ -50,4 +50,33 @@ export const addTodo = todo => {
   const { heading, detail, dueDate } = todo;
   todos.push({ id: maxId + 1, heading, detail, dueDate });
   return getTodos();
+};
+
+const getTodoById = id => todos.filter(todo => todo.id === parseInt(id, 10))[0];
+
+export const getTodo = id => {
+  const todo = getTodoById(id);
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(todo);
+    }, 800);
+  });
+};
+
+export const updateTodo = (id, updatedTodo) => {
+  const todo = getTodoById(id);
+  const { heading, detail, dueDate } = updatedTodo;
+  const newTodo = Object.assign({}, todo, { heading, detail, dueDate });
+  todos = todos.map(todo => {
+    if (todo.id === parseInt(id, 10)) {
+      return newTodo;
+    } else {
+      return todo;
+    }
+  });
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(newTodo);
+    }, 800);
+  });
 };

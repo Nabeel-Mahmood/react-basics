@@ -1,12 +1,18 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 class EditTodo extends Component {
   static propTypes = {
-    onAddTodo: PropTypes.func.isRequired,
-    isSaving: PropTypes.bool
+    onSaveTodo: PropTypes.func.isRequired,
+    isEdit: PropTypes.bool,
+    isSaving: PropTypes.bool,
+    todo: PropTypes.object
+  };
+
+  static defaultProps = {
+    todo: {}
   };
 
   state = {
@@ -20,6 +26,17 @@ class EditTodo extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (
+      this.props.todo.heading !== nextProps.todo.heading ||
+      this.props.todo.detail !== nextProps.todo.detail ||
+      this.props.dueDate !== nextProps.dueDate
+    ) {
+      this.setState({
+        heading: nextProps.todo.heading,
+        detail: nextProps.todo.detail,
+        dueDate: nextProps.todo.dueDate
+      });
+    }
     if (!nextProps.isSaving && this.props.isSaving) {
       this.setState({
         heading: '',
@@ -35,14 +52,14 @@ class EditTodo extends Component {
 
   onSubmitHandler = e => {
     e.preventDefault();
-    const { onAddTodo, isSaving } = this.props;
+    const { onSaveTodo, isSaving } = this.props;
     if (!isSaving) {
-      onAddTodo(this.state);
+      onSaveTodo(this.state);
     }
   };
 
   render() {
-    const { isSaving } = this.props;
+    const { isSaving, isEdit } = this.props;
     const { heading, detail, dueDate } = this.state;
 
     const buttonClasses = classNames('btn btn-primary', { spinner: isSaving });
@@ -51,7 +68,7 @@ class EditTodo extends Component {
     //Here they are hardcoded to make the code a little bit simpler.
     return (
       <section>
-        <h2>Add a Todo</h2>
+        <h2>{isEdit ? 'Edit Todo' : 'Add a Todo'}</h2>
         <form noValidate={true} onSubmit={this.onSubmitHandler}>
           <label htmlFor="heading">Heading</label>
           <input
@@ -84,7 +101,7 @@ class EditTodo extends Component {
             readOnly={isSaving}
           />
           <button aria-busy={isSaving} type="submit" className={buttonClasses}>
-            Add Todo
+            {isEdit ? 'Edit Todo' : 'Add Todo'}
           </button>
           <NavLink to="/todos">Cancel action</NavLink>
         </form>
